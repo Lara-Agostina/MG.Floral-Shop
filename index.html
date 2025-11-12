@@ -1,182 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Floristería MG floral Shop</title>
-    <link rel="stylesheet" href="styles.css">
-
-    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>¡EMOJI BOMBA! 💣</title>
+    <link rel="stylesheet" href="styles.css"> 
+</head>
 <body>
-    
-    <header>
-    <div class="logo">
-        <img src="logo.png.png" alt="MG Floral Shop Logo" class="logo-imagen">
+
+    <h1>¡EMOJI BOMBA! 💣</h1>
+    <p class="subtitle">¡Ahora con explosiones reales y votación por estrellas!</p>
+
+    <div id="startScreen" class="card">
+        <h2>¿Cuántos jugadores?</h2>
+        <input type="number" id="playerCount" min="2" max="8" value="4" style="font-size:2.5rem;padding:15px;margin:20px;width:100px;border-radius:20px;border:3px solid var(--gold);"/>
+        <button class="btn" onclick="startGame()">¡EXPLOTAR JUNTOS!</button>
     </div>
-    
-    <button class="menu-toggle" aria-label="Abrir menú de navegación">☰</button>
 
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="productos.html">Productos</a></li>
-                <li><a href="servicios.html">Servicios (Bodas, Eventos)</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-                </ul>
-        </nav>
-    </header>
-
-    <main>
+    <div id="gameScreen" class="card hidden">
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:15px 0;">
+            <div id="playerList"></div>
+        </div>
+        <div class="prompt" id="prompt"></div>
         
-        <section class="catalogo-header">
-            <h2>Nuestra Colección de Arreglos Florales</h2>
-            <p>Encuentra el ramo perfecto para cualquier ocasión, desde cumpleaños hasta aniversarios.</p>
-            
-            <div class="filtros">
-                <label for="categoria">Filtrar por:</label>
-                <select id="categoria" name="categoria">
-                    <option value="todos">Todos los Productos</option>
-                    <option value="rosas">Rosas</option>
-                    <option value="ocasionales">Arreglos de Ocasión</option>
-                    <option value="plantas">Plantas y Suculentas</option>
-                </select>
-            </div>
-        </section>
+        <div id="inputPhase">
+            <p style="font-size:1.4rem;"><span id="currentPlayer"></span>, ¡10 segundos!</p>
+            <input type="text" class="emoji-input" id="emojiAnswer" placeholder="🦄💍😱"/>
+            <div class="timer" id="timer">10</div>
+        </div>
 
-        <section class="catalogo-grid">
-            
-            <article class="producto-card">
-                <img src="" alt="Rosas Rojas Clásicas" class="producto-imagen">
-                <h3>Rosas Pasión</h3>
-                <p class="precio">$55.000 COP</p>
-                <p class="descripcion">Docena de rosas rojas premium, ideal para aniversarios y San Valentín.</p>
-                <a href="#" class="boton-comprar">Añadir al Carrito</a>
-            </article>
+        <div id="boomPhase" class="hidden">
+    <div class="boom">KABOOM!</div>
+    <p id="boomMessage" style="font-size:2rem;"></p>
+    <button class="btn hidden" onclick="nextPlayerAfterBoom()">Siguiente →</button> 
+</div>
 
-            <article class="producto-card">
-                <img src="" alt="Ramo de Flores Silvestres" class="producto-imagen">
-                <h3>Ramo Campestre</h3>
-                <p class="precio">$42.000 COP</p>
-                <p class="descripcion">Flores de temporada con un toque rústico y natural.</p>
-                <a href="#" class="boton-comprar">Añadir al Carrito</a>
-            </article>
+        <div id="votingPhase" class="hidden">
+            <h2>¡VOTEN LA MEJOR RESPUESTA!</h2>
+            <div id="answers"></div>
+            <p style="margin:20px;font-size:1.2rem;">Toca las estrellas para votar</p>
+            <button class="btn" onclick="endRound()">¡Finalizar ronda!</button>
+        </div>
+    </div>
 
-            <article class="producto-card">
-                <img src="" alt="Jardín de Suculentas" class="producto-imagen">
-                <h3>Jardín Miniatura</h3>
-                <p class="precio">$30.000 COP</p>
-                <p class="descripcion">Suculentas variadas en una maceta decorativa de barro.</p>
-                <a href="#" class="boton-comprar">Añadir al Carrito</a>
-            </article>
+    <div id="endScreen" class="card hidden">
+        </div>
 
-            </section>
-
-    </main>
-
-    <main class="contenedor-contacto">
-        
-        <section class="info-contacto">
-            <h2>Hablemos de Flores</h2>
-            <p>¿Tienes alguna pregunta, necesitas un pedido personalizado o quieres cotizar un evento? Contáctanos por el medio que prefieras.</p>
-            
-            <div class="detalles-contacto">
-                <h3>Detalles</h3>
-                <p><strong>Teléfono:</strong> +57 300 123 4567</p>
-                <p><strong>Email:</strong> info@mgfloralshop.com</p>
-                <p><strong>Horario:</strong> Lun - Sáb: 9:00 - 18:00</p>
-                <p><strong>Dirección:</strong> Calle 10 # 5-20, Bogotá, Colombia</p>
-            </div>
-            
-        </section>
-
-        <section class="formulario-seccion">
-            <h3>Envíanos un Mensaje</h3>
-            <form action="#" method="POST" class="formulario-contacto">
-                
-                <div class="campo">
-                    <label for="nombre">Nombre Completo:</label>
-                    <input type="text" id="nombre" name="nombre" required>
-                </div>
-
-                <div class="campo">
-                    <label for="email">Correo Electrónico:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-
-                <div class="campo">
-                    <label for="asunto">Asunto:</label>
-                    <input type="text" id="asunto" name="asunto">
-                </div>
-                
-                <div class="campo">
-                    <label for="mensaje">Tu Mensaje / Consulta:</label>
-                    <textarea id="mensaje" name="mensaje" rows="6" required></textarea>
-                </div>
-                
-                <button type="submit" class="boton-principal">Enviar Consulta</button>
-            </form>
-        </section>
-
-    </main>
-
-    <main>
-        
-        <section class="introduccion-servicios">
-            <h2>Diseño Floral para Momentos Inolvidables</h2>
-            <p class="subtitulo">Transformamos tus celebraciones y espacios con la belleza de las flores. Descubre nuestros servicios exclusivos.</p>
-        </section>
-
-        <section class="tarjeta-servicio boda-evento">
-            <div class="servicio-contenido">
-                <h3>Diseño Floral para Bodas y Eventos</h3>
-                <p>Desde el ramo de la novia hasta la decoración completa del lugar, creamos atmósferas mágicas con flores frescas. Ofrecemos cotizaciones personalizadas y consultoría sin costo.</p>
-                <ul>
-                    <li>Ramos de Novia y Dama de Honor</li>
-                    <li>Centros de Mesa y Arreglos de Altar</li>
-                    <li>Decoración de Salones y Lugares al Aire Libre</li>
-                </ul>
-                <a href="contacto.html" class="boton-secundario">Cotizar Mi Evento</a>
-            </div>
-            <img src="" alt="Flores de Boda" class="servicio-imagen">
-        </section>
-
-        <section class="tarjeta-servicio corporativo">
-            <img src="" alt="Flores para Oficina" class="servicio-imagen">
-            <div class="servicio-contenido">
-                <h3>Decoración y Mantenimiento Corporativo</h3>
-                <p>Dale un toque de elegancia y frescura a tu negocio. Ofrecemos planes de suscripción semanal o mensual para oficinas, hoteles, restaurantes y tiendas.</p>
-                <ul>
-                    <li>Arreglos florales de recepción (Cambio Semanal)</li>
-                    <li>Mantenimiento de plantas de interior</li>
-                    <li>Diseño floral para lanzamientos de producto</li>
-                </ul>
-                <a href="contacto.html" class="boton-secundario">Ver Planes Empresariales</a>
-            </div>
-        </section>
-
-        <section class="tarjeta-servicio suscripcion">
-            <div class="servicio-contenido">
-                <h3>Suscripciones Florales a Domicilio</h3>
-                <p>Recibe un ramo único y fresco en la puerta de tu casa cada semana o quincena. La manera perfecta de mantener tu hogar vibrante.</p>
-                <ul>
-                    <li>Planes Semanales, Quincenales o Mensuales</li>
-                    <li>Variedad de flores de temporada</li>
-                    <li>Entrega sin costo adicional</li>
-                </ul>
-                <a href="contacto.html" class="boton-secundario">Suscribirme Ahora</a>
-            </div>
-            <img src="" alt="Ramo de Suscripción" class="servicio-imagen">
-        </section>
-
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Floristería MG Floral Shop. Todos los derechos reservados.</p>
-        <p>Síguenos en: Instagram: maximiliano.g.floress</p>
-        <p>Dirección: 📍Av. Nieva Y Castilla esquina Julio Herrera.
-                    📍Sarmiento 520.</p>
-    </footer>
-    
     <script src="script.js"></script>
 
 </body>
