@@ -1,145 +1,571 @@
-:root {
-    --bg: #ff6b6b;
-    --accent: #feca57;
-    --text: #2d3436;
-    --boom: #ff3838;
-    --gold: #ffd700;
+/* Estilo del botón de hamburguesa (oculto por defecto) */
+.menu-toggle {
+    display: none; /* Oculto en escritorio */
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2em;
+    cursor: pointer;
+    padding: 0 10px;
+    line-height: 1;
 }
 
-* { 
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
-    font-family: 'Comic Sans MS', cursive, sans-serif; 
+/* ------------------------------------- */
+/* 1. ESTILOS GLOBALES Y TIPOGRAFÍA */
+/* ------------------------------------- */
+
+/* Un reset básico para asegurar consistencia entre navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Paleta de colores sugerida para una floristería */
+    --color-principal: #A64B62; /* Rosa oscuro/Burdeos (Elegante) */
+    --color-secundario: #D4B483; /* Tostado claro/Beige (Tierra/Natural) */
+    --color-fondo-claro: #F5F5F5; /* Gris muy claro */
+    --color-texto: #333;
+    --color-acento: #4CAF50; /* Verde (Follaje) */
 }
 
 body {
-    background: linear-gradient(135deg, #ff9ff3, #feca57, #48dbfb);
-    background-size: 300% 300%;
-    animation: gradient 8s ease infinite;
-    color: var(--text);
+    font-family: 'Arial', sans-serif; /* Fuente básica y legible */
+    line-height: 1.6;
+    color: var(--color-texto);
+    background-color: var(--color-fondo-claro);
+}
+
+/* ------------------------------------- */
+/* 2. ESTILOS DE ENCABEZADO (HEADER y NAV) */
+/* ------------------------------------- */
+
+header {
+    background-color: var(--color-principal);
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between; /* Alinea el título a la izquierda y el menú a la derecha */
+    align-items: center;
+}
+
+header h1 {
+    font-size: 1.8em;
+}
+
+nav ul {
+    list-style: none; /* Quita los puntos de la lista */
+    display: flex;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none; /* Quita el subrayado de los enlaces */
+    padding: 10px 15px;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Un ligero cambio de color al pasar el mouse */
+}
+
+.logo-imagen {
+    height: 60px; /* Define una altura cómoda para el logo */
+    width: auto;
+    vertical-align: middle; /* Asegura que la imagen se alinee bien */
+}
+
+/* ------------------------------------- */
+/* 3. ESTILOS DE SECCIÓN PRINCIPAL (HERO) */
+/* ------------------------------------- */
+
+#hero {
+    background-color: var(--color-secundario);
+    padding: 100px 40px;
+    text-align: center;
+    color: var(--color-texto);
+}
+
+#hero h2 {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    color: var(--color-principal); /* Destaca el titular */
+}
+
+.boton-principal {
+    display: inline-block;
+    background-color: var(--color-acento); /* Botón de color verde como las hojas */
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.boton-principal:hover {
+    background-color: #388E3C; /* Un verde más oscuro al pasar el mouse */
+}
+
+/* ------------------------------------- */
+/* 4. ESTILOS DE SECCIÓN DE DESTACADOS */
+/* ------------------------------------- */
+
+#destacados {
+    padding: 40px;
+    text-align: center;
+}
+
+#destacados h3 {
+    color: var(--color-principal);
+    margin-bottom: 30px;
+    font-size: 1.5em;
+}
+
+/* Estilo simple para los elementos de producto destacados */
+#destacados div {
+    display: inline-block;
+    width: 30%; /* Para que quepan 3 en una línea */
+    background-color: white;
+    padding: 20px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* ------------------------------------- */
+/* 5. ESTILOS DE PIE DE PÁGINA (FOOTER) */
+/* ------------------------------------- */
+
+footer {
+    background-color: var(--color-texto); /* Color oscuro para el pie de página */
+    color: white;
     text-align: center;
     padding: 20px;
-    min-height: 100vh;
+    margin-top: 40px;
+    font-size: 0.9em;
 }
 
-@keyframes gradient { 
-    0%{background-position:0% 50%} 
-    50%{background-position:100% 50%} 
-    100%{background-position:0% 50%} 
+footer p {
+    margin: 5px 0;
 }
 
-h1 { 
-    font-size: 2.8rem; 
-    margin-bottom: 10px; 
-    text-shadow: 3px 3px 0 rgba(0,0,0,0.2); 
+/* ------------------------------------- */
+/* 6. MEDIA QUERIES PARA RESPONSIVE DESIGN */
+/* ------------------------------------- */
+
+/* Pantallas pequeñas (celulares) - Menos de 768px */
+@media (max-width: 768px) {
+    /* Muestra el botón de hamburguesa y oculta el menú por defecto */
+    .menu-toggle {
+        display: block; /* Muestra el botón en móvil */
+        order: 2; /* Coloca el botón a la derecha en el header flex */
+    }
+
+    header {
+        /* Volvemos a colocar el logo a la izquierda y el botón a la derecha */
+        flex-direction: row; 
+        justify-content: space-between;
+    }
+
+    /* Oculta el menú cuando no está activo (en pantallas pequeñas) */
+    #main-nav {
+        display: none; 
+        width: 100%;
+        order: 3; /* Asegura que el menú se muestre debajo del logo y botón */
+    }
+
+    /* ESTADO ACTIVO: Muestra el menú cuando la clase 'active' está presente */
+    #main-nav.active {
+        display: block;
+    }
+
+    /* Apila los ítems del menú */
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.1); /* Fondo sutil para el menú desplegado */
+    }
+    
+    /* ... el resto de los estilos responsive se mantienen ... */
 }
 
-.card {
-    background: white;
-    border-radius: 25px;
-    padding: 25px;
-    margin: 15px auto;
-    max-width: 500px; /* Tamaño máximo más razonable */
-    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    nav ul {
+        flex-direction: column; /* Apila los elementos del menú */
+        width: 100%; /* El menú ocupa todo el ancho */
+    }
+
+    nav ul li {
+    header {
+        flex-direction: column; /* Apila el l
+        margin: 5px 0; /* Pequeño margen vertical entre ítems de menú */
+    }
+
+    nav ul li a {
+        padding: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separador sutil */
+    }
+
+    nav ul li:last-child a {
+        border-bottom: none; /* No hay separador en el último ítem */
+    }
+
+    #hero {
+        padding: 60px 20px; /* Menos padding en pantallas pequeñas */
+    }
+
+    #hero h2 {
+        font-size: 1.8em; /* Tamaño de fuente más pequeño para el título principal */
+    }
+
+    #destacados div {
+        width: 90%; /* Los elementos destacados ocupan casi todo el ancho */
+        margin: 10px auto; /* Centrar los elementos */
+    }
 }
 
-.prompt { 
-    font-size: 1.9rem; 
-    font-weight: bold; 
-    margin: 25px 0; 
-    color: #e17055; 
-    min-height: 70px; 
+/* Pantallas muy pequeñas (landscape de celular, etc.) - Menos de 480px */
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    .logo-imagen { /* Aseguramos que el logo no sea demasiado grande */
+        height: 50px; 
+    }
+
+    #hero h2 {
+        font-size: 1.5em;
+    }
+
+    .boton-principal {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+
+    footer {
+        font-size: 0.8em;
+        padding: 15px;
+    }
 }
 
-.emoji-input {
-    font-size: 3.5rem;
-    padding: 15px;
+/* ------------------------------------- */
+/* 7. ESTILOS DE PÁGINA DE PRODUCTOS */
+/* ------------------------------------- */
+
+.catalogo-header {
+    text-align: center;
+    padding: 40px 20px 20px;
+    background-color: white;
+}
+
+.catalogo-header h2 {
+    color: var(--color-principal);
+    margin-bottom: 10px;
+}
+
+.filtros {
+    margin: 20px 0;
+}
+
+.filtros select {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.catalogo-grid {
+    display: grid;
+    /* Define la cuadrícula: 3 columnas de igual tamaño */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px; /* Espacio entre las tarjetas */
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto; /* Centrar la cuadrícula */
+}
+
+.producto-card {
+    background-color: white;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.producto-card:hover {
+    transform: translateY(-5px); /* Efecto sutil al pasar el mouse */
+}
+
+.producto-imagen {
+    width: 100%;
+    height: 250px; /* Alto fijo para las imágenes (ajustar luego con objetos reales) */
+    object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsión */
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.producto-card h3 {
+    color: var(--color-principal);
+    font-size: 1.4em;
+    margin-bottom: 5px;
+}
+
+.precio {
+    color: var(--color-acento); /* Color verde/dorado para el precio */
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.descripcion {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.boton-comprar {
+    display: block; /* Ocupa todo el ancho */
+    background-color: var(--color-acento); 
+    color: white;
+    padding: 10px 0;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.boton-comprar:hover {
+    background-color: var(--color-principal); /* Borgoña en hover */
+}
+
+/* Y asegurémonos de que esto también se adapte en móviles */
+@media (max-width: 768px) {
+    .catalogo-grid {
+        /* En pantallas pequeñas, solo 1 columna y menos padding */
+        grid-template-columns: 1fr; 
+        padding: 20px;
+    }
+}
+
+/* ------------------------------------- */
+/* 8. ESTILOS DE PÁGINA DE CONTACTO */
+/* ------------------------------------- */
+
+.contenedor-contacto {
+    display: flex;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    gap: 40px; /* Espacio entre la info y el formulario */
+}
+
+/* Estilos de la información de contacto (lado izquierdo) */
+.info-contacto {
+    flex: 1; /* Ocupa la mitad del espacio */
+    padding: 20px;
+    background-color: var(--color-fondo-claro);
+    border-radius: 8px;
+}
+
+.info-contacto h2 {
+    color: var(--color-principal);
+    margin-bottom: 15px;
+}
+
+.detalles-contacto {
+    margin-top: 25px;
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
+}
+
+.detalles-contacto h3 {
+    color: var(--color-acento);
+    margin-bottom: 10px;
+}
+
+.detalles-contacto p {
+    margin-bottom: 8px;
+}
+
+
+/* Estilos del Formulario (lado derecho) */
+.formulario-seccion {
+    flex: 1; /* Ocupa la otra mitad del espacio */
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.formulario-seccion h3 {
+    color: var(--color-principal);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.campo {
+    margin-bottom: 15px;
+}
+
+.campo label {
+    display: block; /* La etiqueta ocupa su propia línea */
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--color-texto);
+}
+
+.campo input[type="text"],
+.campo input[type="email"],
+.campo textarea {
+    width: 100%; /* El campo ocupa todo el ancho disponible */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.campo textarea {
+    resize: vertical; /* Permite al usuario solo redimensionar verticalmente */
+}
+
+/* Reutilizamos el estilo del botón principal */
+.formulario-seccion .boton-principal {
     width: 100%;
     text-align: center;
-    border: 4px dashed #ddd;
-    border-radius: 20px;
-    background: #f8f9fa;
-}
-
-.emoji-input:focus { 
-    outline: none; 
-    border-color: var(--gold); 
-    background: #fffbe6; 
-}
-
-.btn {
-    background: var(--accent);
-    color: white;
     border: none;
-    padding: 18px 35px;
-    font-size: 1.6rem;
-    border-radius: 50px;
-    margin: 15px 8px;
     cursor: pointer;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    transition: all 0.2s;
 }
 
-.btn:active { 
-    transform: scale(0.93); 
+/* Media Query para Contacto Móvil */
+@media (max-width: 768px) {
+    .contenedor-contacto {
+        flex-direction: column; /* Apilamos la info y el formulario en móviles */
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .info-contacto, .formulario-seccion {
+        width: 100%;
+    }
 }
 
-.timer { 
-    font-size: 4rem; 
-    font-weight: bold; 
-    color: var(--boom); 
-    margin: 20px 0; 
+/* ------------------------------------- */
+/* 9. ESTILOS DE PÁGINA DE SERVICIOS */
+/* ------------------------------------- */
+
+.introduccion-servicios {
+    text-align: center;
+    padding: 60px 40px 40px;
+    background-color: var(--color-secundario); /* Fondo suave */
 }
 
-.boom { 
-    font-size: 6rem; 
-    animation: explode 0.8s ease-out; 
+.introduccion-servicios h2 {
+    color: var(--color-principal);
+    font-size: 2.2em;
+    margin-bottom: 10px;
 }
 
-@keyframes explode {
-    0% { transform: scale(0); opacity: 0; }
-    50% { transform: scale(1.8); }
-    100% { transform: scale(1); opacity: 1; }
+.subtitulo {
+    font-size: 1.1em;
+    color: var(--color-texto);
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-.hidden { 
-    display: none; 
+.tarjeta-servicio {
+    display: flex;
+    align-items: center; /* Centra verticalmente el texto y la imagen */
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    gap: 30px;
 }
 
-.stars { 
-    font-size: 2.5rem; 
-    cursor: pointer; 
-    user-select: none; 
+/* Invierte el orden de los elementos para un diseño alternado (Imagen - Texto) */
+.tarjeta-servicio:nth-child(even) {
+    flex-direction: row-reverse;
 }
 
-.stars span:hover { 
-    transform: scale(1.1); /* Hice el hover un poco más sutil */
+.servicio-imagen {
+    width: 45%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
-.selected { 
-    color: var(--gold) !important; 
-    text-shadow: 0 0 10px gold; 
+.servicio-contenido {
+    width: 55%;
+    padding: 10px;
 }
 
-.player-score { 
-    background: #fff; 
-    padding: 12px 18px; 
-    border-radius: 20px; 
-    margin: 8px; 
-    font-weight: bold; 
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2); 
-    transition: all 0.3s ease;
+.servicio-contenido h3 {
+    color: var(--color-principal);
+    font-size: 1.8em;
+    margin-bottom: 15px;
 }
 
-.winner { 
-    animation: pulse 1s infinite; 
-    background: linear-gradient(45deg, var(--gold), #ffd700, var(--gold)) !important; 
-    color: black !important; 
+.servicio-contenido ul {
+    list-style-type: none; /* Quita los puntos */
+    padding-left: 0;
+    margin: 15px 0;
 }
 
-@keyframes pulse { 
-    0% { transform: scale(1); } 
-    50% { transform: scale(1.05); } 
-    100% { transform: scale(1); } 
+.servicio-contenido ul li {
+    padding-left: 1.5em; /* Espacio para el icono */
+    text-indent: -1.5em; /* Mueve el texto de vuelta */
+    margin-bottom: 8px;
+}
+
+/* Ícono personalizado para la lista */
+.servicio-contenido ul li:before {
+    content: "🌿"; /* Emoji de hoja o flor */
+    display: inline-block;
+    width: 1.5em;
+    margin-right: 0.5em;
+    color: var(--color-acento);
+}
+
+.boton-secundario {
+    display: inline-block;
+    background-color: var(--color-principal); /* Borgoña */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+}
+
+.boton-secundario:hover {
+    background-color: var(--color-acento); /* Acuérdate de usar el color de acento en hover */
+}
+
+/* Adaptación Móvil de Servicios */
+@media (max-width: 768px) {
+    .tarjeta-servicio,
+    .tarjeta-servicio:nth-child(even) {
+        flex-direction: column; /* Apila imagen y texto en móviles */
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .servicio-imagen,
+    .servicio-contenido {
+        width: 100%; /* Ocupa todo el ancho */
+        max-height: none;
+    }
+
+    .servicio-imagen {
+        margin-bottom: 15px;
+    }
 }
